@@ -10,7 +10,7 @@ export const GENERAL_INFO = {
 export const SOCIAL_LINKS = [
     { name: 'github', url: 'https://github.com/kowshek' },
     { name: 'linkedin', url: 'https://www.linkedin.com/in/kowshek-iyyappan' },
-    { name: 'IngrediScan.AI', url: 'https://ingrediscan.ai' },
+    { name: 'IngrediScan.AI', url: 'https://ingrediscan.in' },
 ];
 
 export const MY_STACK = {
