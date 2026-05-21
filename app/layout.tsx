@@ -27,7 +27,7 @@ const robotoFlex = Roboto_Flex({
 });
 
 export const metadata: Metadata = {
-    title: 'Kowshek Iyyappan — Full-Stack Engineer & Founder',
+    title: 'Kowshek Iyyappan — Full-Stack Engineer',
     description:
         'Portfolio of Kowshek Iyyappan — Full-stack engineer, founder of IngrediScan.AI, CSE graduate from Amrita Coimbatore 2025.',
 };
