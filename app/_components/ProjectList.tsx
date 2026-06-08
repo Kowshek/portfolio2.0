@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { useLenis } from 'lenis/react';
 import Image from 'next/image';
 import React, { useEffect, useRef, useState, MouseEvent } from 'react';
 import Project from './Project';
@@ -18,8 +17,6 @@ const ProjectList = () => {
     const imageContainer = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
     const [selectedProject, setSelectedProject] = useState<string | null>(null);
-    const lenis = useLenis();
-    const restoredRef = useRef(false);
 
     // Set initial selected project client-side only to avoid SSR hydration mismatch.
     useEffect(() => {
@@ -27,29 +24,6 @@ const ProjectList = () => {
             setSelectedProject(PROJECTS[0].slug);
         }
     }, []);
-
-    // Restore scroll on back navigation.
-    useEffect(() => {
-        if (!lenis || restoredRef.current) return;
-
-        const shouldRestore =
-            sessionStorage.getItem('restoreScroll') === 'true';
-        const savedScroll = parseFloat(
-            sessionStorage.getItem('homeScrollY') || '0',
-        );
-
-        if (shouldRestore && savedScroll > 0) {
-            restoredRef.current = true;
-            // Delay slightly so the overlay still covers the scroll jump.
-            // Flags are cleared inside the timeout so template.tsx sees
-            // restoreScroll=true and skips its own scrollTo(0).
-            setTimeout(() => {
-                sessionStorage.removeItem('restoreScroll');
-                sessionStorage.removeItem('homeScrollY');
-                lenis.scrollTo(savedScroll, { immediate: true });
-            }, 50);
-        }
-    }, [lenis]);
 
     // update imageRef.current href based on the cursor hover position
     // also update image position

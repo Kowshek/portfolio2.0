@@ -2,38 +2,58 @@
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLenis } from 'lenis/react';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Template({ children }: { children: React.ReactNode }) {
     const lenis = useLenis();
     const pathname = usePathname();
+    const hasHandledScroll = useRef(false);
+
+    // Prevent browser from doing its own scroll restoration
+    useEffect(() => {
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+    }, []);
 
     useEffect(() => {
         if (!lenis) return;
+        if (hasHandledScroll.current) return;
+        hasHandledScroll.current = true;
 
-        // Only skip scroll-to-top when ALL three conditions are true:
-        // 1. We're mounting on the home route
-        // 2. The flag was set by ProjectList when the user left home
-        // 3. There is an actual non-zero position to restore
-        //
-        // For every other route (project pages, etc.) we always scroll to top,
-        // even if restoreScroll happens to be stale in sessionStorage.
-        const isHome = pathname === '/';
-        const shouldRestore =
-            sessionStorage.getItem('restoreScroll') === 'true';
-        const savedY = parseFloat(
-            sessionStorage.getItem('homeScrollY') || '0',
-        );
+        if (pathname === '/') {
+            const savedY = parseFloat(
+                sessionStorage.getItem('homeScrollY') || '0',
+            );
+            if (savedY > 0) {
+                // The page height might be too small initially (e.g. 1000px), causing Lenis
+                // to clip the scroll. As components and images load, the DOM expands.
+                // We repeatedly enforce the scroll position for 500ms while the GSAP overlay
+                // is still covering the screen.
+                let attempts = 0;
+                const interval = setInterval(() => {
+                    window.scrollTo(0, savedY);
+                    if (lenis) lenis.scrollTo(savedY, { immediate: true });
+                    ScrollTrigger.refresh();
+                    
+                    attempts++;
+                    // Stop after ~500ms or if we successfully reached the exact scroll position
+                    if (attempts > 10) {
+                        clearInterval(interval);
+                    }
+                }, 50);
 
-        if (isHome && shouldRestore && savedY > 0) {
-            // ProjectList's restore effect will handle the actual scroll.
-            return;
+                sessionStorage.removeItem('homeScrollY');
+                return;
+            }
         }
 
+        // Every other page (or home with no saved position) → top
         lenis.scrollTo(0, { immediate: true });
     }, [lenis, pathname]);
 

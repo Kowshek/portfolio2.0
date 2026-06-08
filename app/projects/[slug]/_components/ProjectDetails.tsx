@@ -6,8 +6,9 @@ import { IProject } from '@/types';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
 import { useRef } from 'react';
+import TransitionLink from '@/components/TransitionLink';
 
 interface Props {
     project: IProject;
@@ -85,6 +86,15 @@ const ProjectDetails = ({ project }: Props) => {
     return (
         <section className="pt-5 pb-14">
             <div className="container" ref={containerRef}>
+                <TransitionLink
+                    back
+                    href="/"
+                    className="mb-16 inline-flex gap-2 items-center group h-12 fade-in-later opacity-0"
+                >
+                    <ArrowLeft className="group-hover:-translate-x-1 group-hover:text-primary transition-all duration-300" />
+                    Back
+                </TransitionLink>
+
                 <div
                     className="top-0 min-h-[calc(100svh-100px)] flex"
                     id="info"
