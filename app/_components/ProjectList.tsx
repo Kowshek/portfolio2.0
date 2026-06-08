@@ -28,14 +28,6 @@ const ProjectList = () => {
         }
     }, []);
 
-    // Save scroll position when navigating away from home.
-    // Fires on unmount — overlay is already covering, scroll is settled.
-    useEffect(() => {
-        return () => {
-            sessionStorage.setItem('homeScrollY', String(window.scrollY));
-        };
-    }, []);
-
     // Restore scroll on back navigation.
     useEffect(() => {
         if (!lenis || restoredRef.current) return;

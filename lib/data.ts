@@ -1,4 +1,4 @@
-import { IProject } from '@/types';
+import { ICertification, IExperience, IHighlight, IProject } from '@/types';
 
 export const GENERAL_INFO = {
     email: 'kowshekiyyappan@gmail.com',
@@ -29,9 +29,7 @@ export const MY_STACK = {
         { name: 'Node.js', icon: '/logo/node.png' },
         { name: 'Python', icon: '/logo/python.svg' },
     ],
-    database: [
-        { name: 'PostgreSQL', icon: '/logo/postgreSQL.png' },
-    ],
+    database: [{ name: 'PostgreSQL', icon: '/logo/postgreSQL.png' }],
     tools: [
         { name: 'Claude API', icon: '/logo/anthropic.svg' },
         { name: 'Git', icon: '/logo/git.png' },
@@ -69,10 +67,60 @@ export const PROJECTS: IProject[] = [
         <li>📊 Observability: PostHog, Sentry, and UptimeRobot wired from day one</li>
         <li>🚀 Deployed on Vercel CDN across two custom domains</li>
       </ul>`,
-        techStack: ['React 19', 'Vite', 'Tailwind CSS', 'Supabase', 'Deno', 'Claude Haiku', 'PostHog', 'Sentry', 'Vercel'],
+        techStack: [
+            'React 19',
+            'Vite',
+            'Tailwind CSS',
+            'Supabase',
+            'Deno',
+            'Claude Haiku',
+            'PostHog',
+            'Sentry',
+            'Vercel',
+        ],
         thumbnail: '/projects/thumbnail/ingrediscan.jpg',
         longThumbnail: '/projects/long/ingrediscan.jpg',
         images: ['/projects/images/ingrediscan.jpg'],
+        architecture: {
+            layers: [
+                {
+                    id: 'user',
+                    label: 'User',
+                    sublabel: 'Camera · Browser · iOS / Android',
+                    icon: '👤',
+                    variant: 'default',
+                },
+                {
+                    id: 'pwa',
+                    label: 'React 19 + Vite PWA',
+                    sublabel: 'Service worker · Offline-first · Installable',
+                    icon: '⚛',
+                    variant: 'default',
+                },
+                {
+                    id: 'edge',
+                    label: 'Supabase Edge Functions',
+                    sublabel: 'Deno runtime · Serverless inference',
+                    icon: '☁️',
+                    variant: 'primary',
+                },
+                {
+                    id: 'ai',
+                    label: 'Claude Haiku (Anthropic)',
+                    sublabel:
+                        'Vision + ingredient classification · < 3 s latency',
+                    icon: '🤖',
+                    variant: 'secondary',
+                },
+                {
+                    id: 'db',
+                    label: 'Supabase PostgreSQL',
+                    sublabel: 'User profiles · scan history · dietary flags',
+                    icon: '🗄️',
+                    variant: 'default',
+                },
+            ],
+        },
     },
     {
         title: 'Pipeline Builder',
@@ -98,6 +146,38 @@ export const PROJECTS: IProject[] = [
         thumbnail: '/projects/thumbnail/pipeline-builder.jpg',
         longThumbnail: '/projects/long/pipeline-builder.jpg',
         images: ['/projects/images/pipeline-builder.jpg'],
+        architecture: {
+            layers: [
+                {
+                    id: 'user',
+                    label: 'User',
+                    sublabel: 'Drag · drop · configure nodes',
+                    icon: '👤',
+                    variant: 'default',
+                },
+                {
+                    id: 'canvas',
+                    label: 'ReactFlow Canvas',
+                    sublabel: 'Custom node types · edge connections · zoom',
+                    icon: '🎨',
+                    variant: 'primary',
+                },
+                {
+                    id: 'state',
+                    label: 'Zustand State Manager',
+                    sublabel: 'Undo / redo history stacks · Ctrl+Z / Ctrl+Y',
+                    icon: '🔄',
+                    variant: 'default',
+                },
+                {
+                    id: 'serial',
+                    label: 'JSON Serialization',
+                    sublabel: 'Pipeline export · import · persistence',
+                    icon: '📄',
+                    variant: 'default',
+                },
+            ],
+        },
     },
     {
         title: 'Task Manager',
@@ -120,10 +200,58 @@ export const PROJECTS: IProject[] = [
         <li>Built the frontend in vanilla HTML/CSS/JS, no framework</li>
         <li>Containerized with Docker and deployed to Render with auto-generated Swagger docs at /docs</li>
       </ul>`,
-        techStack: ['FastAPI', 'Python', 'PostgreSQL', 'JWT', 'HTML', 'CSS', 'JavaScript', 'Render'],
+        techStack: [
+            'FastAPI',
+            'Python',
+            'PostgreSQL',
+            'JWT',
+            'HTML',
+            'CSS',
+            'JavaScript',
+            'Render',
+        ],
         thumbnail: '/projects/thumbnail/task-manager.jpg',
         longThumbnail: '/projects/long/task-manager.jpg',
         images: ['/projects/images/task-manager.jpg'],
+        architecture: {
+            layers: [
+                {
+                    id: 'user',
+                    label: 'User',
+                    sublabel: 'Vanilla HTML / CSS / JS frontend',
+                    icon: '👤',
+                    variant: 'default',
+                },
+                {
+                    id: 'api',
+                    label: 'FastAPI Backend',
+                    sublabel: 'REST endpoints · Swagger UI at /docs',
+                    icon: '⚡',
+                    variant: 'primary',
+                },
+                {
+                    id: 'auth',
+                    label: 'JWT Auth Middleware',
+                    sublabel: 'Token-based auth · user isolation',
+                    icon: '🔐',
+                    variant: 'default',
+                },
+                {
+                    id: 'db',
+                    label: 'PostgreSQL',
+                    sublabel: 'Per-user task storage · pagination',
+                    icon: '🗄️',
+                    variant: 'default',
+                },
+                {
+                    id: 'infra',
+                    label: 'Docker + Render',
+                    sublabel: 'Containerised · auto-deploy on push',
+                    icon: '🐳',
+                    variant: 'secondary',
+                },
+            ],
+        },
     },
     {
         title: 'Finsight Dashboard',
@@ -145,10 +273,49 @@ export const PROJECTS: IProject[] = [
         <li>Implemented client-side filtering and charting logic</li>
         <li>Deployed on Vercel</li>
       </ul>`,
-        techStack: ['React', 'Recharts', 'Zustand', 'React Router', 'Tailwind CSS', 'Vercel'],
+        techStack: [
+            'React',
+            'Recharts',
+            'Zustand',
+            'React Router',
+            'Tailwind CSS',
+            'Vercel',
+        ],
         thumbnail: '/projects/thumbnail/finsight.jpg',
         longThumbnail: '/projects/long/finsight.jpg',
         images: ['/projects/images/finsight.jpg'],
+        architecture: {
+            layers: [
+                {
+                    id: 'user',
+                    label: 'User',
+                    sublabel: 'Browser SPA',
+                    icon: '👤',
+                    variant: 'default',
+                },
+                {
+                    id: 'router',
+                    label: 'React Router',
+                    sublabel: 'Client-side multi-page navigation',
+                    icon: '🔀',
+                    variant: 'default',
+                },
+                {
+                    id: 'store',
+                    label: 'Zustand Store',
+                    sublabel: 'Global state · date-range filters',
+                    icon: '🔄',
+                    variant: 'primary',
+                },
+                {
+                    id: 'charts',
+                    label: 'Recharts',
+                    sublabel: 'Line · Bar · Pie · responsive containers',
+                    icon: '📈',
+                    variant: 'secondary',
+                },
+            ],
+        },
     },
     {
         title: 'IDR Platform',
@@ -174,13 +341,138 @@ export const PROJECTS: IProject[] = [
         thumbnail: '/projects/thumbnail/idr.jpg',
         longThumbnail: '/projects/long/idr.jpg',
         images: ['/projects/images/idr.jpg'],
+        architecture: {
+            layers: [
+                {
+                    id: 'user',
+                    label: 'User',
+                    sublabel: 'Landing page visitor',
+                    icon: '👤',
+                    variant: 'default',
+                },
+                {
+                    id: 'frontend',
+                    label: 'HTML / CSS / JavaScript',
+                    sublabel:
+                        'Semantic markup · responsive layout · animations',
+                    icon: '🌐',
+                    variant: 'primary',
+                },
+                {
+                    id: 'forms',
+                    label: 'Netlify Forms',
+                    sublabel: 'Profile-based routing · spam filtering',
+                    icon: '📬',
+                    variant: 'default',
+                },
+                {
+                    id: 'cdn',
+                    label: 'Netlify CDN',
+                    sublabel: 'Global hosting · CI/CD on push',
+                    icon: '🚀',
+                    variant: 'secondary',
+                },
+            ],
+        },
     },
 ];
 
-export const MY_EXPERIENCE = [
+export const MY_EXPERIENCE: IExperience[] = [
     {
-        title: 'Frontend Developer Intern',
-        company: 'CLSS Labs (Client Linx Software Pvt Ltd)',
-        duration: '2024 - 2025',
+        title: 'Frontend Developer',
+        company: 'CLSS Labs',
+        companyFull: 'Client Linx Software Pvt Ltd',
+        duration: '2024 – 2025',
+        location: 'Chennai, India',
+        technologies: ['React', 'JavaScript', 'CSS', 'REST APIs', 'Git'],
+        responsibilities: [
+            'Built and maintained responsive React frontends across multiple client-facing web applications',
+            'Integrated RESTful APIs and managed component-level state with React hooks and context',
+            'Translated Figma designs into pixel-accurate, production-ready UI components',
+            'Collaborated with backend engineers to define and consume API contracts',
+            'Participated in code reviews, sprint planning, and production deployments',
+        ],
+        achievements: [
+            'Delivered production-ready features shipped to real users within the first month of joining',
+            'Built a reusable component library that reduced UI development time across multiple projects',
+            'Improved page load performance by implementing route-level code splitting',
+            'Maintained zero critical bugs in assigned frontend features across the full internship period',
+        ],
+        impact: 'Took full ownership of frontend features across multiple client products, from design handoff through to deployment. Built components that were reused across the codebase and contributed to shipping product to real users consistently on schedule.',
+    },
+];
+
+export const CERTIFICATIONS: ICertification[] = [
+    {
+        title: 'Claude 101',
+        provider: 'Anthropic Education',
+        date: 'April 2026',
+        credentialUrl: 'https://verify.skilljar.com/c/9brbht3v2crm',
+        skills: [
+            'Claude API',
+            'AI Fundamentals',
+            'Prompt Writing',
+            'LLM Concepts',
+        ],
+        providerLogo: '/logo/anthropic.svg',
+    },
+    {
+        title: 'Introduction to Model Context Protocol',
+        provider: 'Anthropic Education',
+        date: 'June 2026',
+        credentialUrl: 'https://verify.skilljar.com/c/so9wf5zuxgnt',
+        skills: ['MCP', 'Claude API', 'Tool Use', 'AI Integration'],
+        providerLogo: '/logo/anthropic.svg',
+    },
+    {
+        title: 'Prompt Engineering',
+        provider: 'Anthropic',
+        date: '2024',
+        skills: [
+            'Prompt Design',
+            'Claude API',
+            'Few-shot Learning',
+            'Chain-of-Thought',
+        ],
+        providerLogo: '/logo/anthropic.svg',
+    },
+    {
+        title: 'Building with Claude',
+        provider: 'Anthropic',
+        date: '2024',
+        skills: [
+            'Claude API',
+            'AI Integration',
+            'Production AI Apps',
+            'Edge Functions',
+        ],
+        providerLogo: '/logo/anthropic.svg',
+    },
+];
+
+export const HIGHLIGHTS: IHighlight[] = [
+    {
+        value: '5+',
+        label: 'Production Apps',
+        description:
+            'Deployed on Vercel, Render, and Netlify, not just GitHub repos gathering dust.',
+    },
+    {
+        value: '1',
+        label: 'Live AI Product',
+        description:
+            'IngrediScan.AI, solo-built from zero to production, serving real users with real AI.',
+    },
+    {
+        value: 'Full-Stack',
+        label: 'Range',
+        description:
+            'React frontends → FastAPI backends → PostgreSQL databases. I own the whole stack.',
+    },
+    {
+        value: '1 yr',
+        label: 'Industry Experience',
+        description:
+            'Frontend intern at CLSS Labs shipping features for real clients in production.',
     },
 ];

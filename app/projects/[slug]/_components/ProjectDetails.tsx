@@ -1,12 +1,12 @@
 'use client';
 import parse from 'html-react-parser';
 import ArrowAnimation from '@/components/ArrowAnimation';
-import TransitionLink from '@/components/TransitionLink';
+import ArchitectureDiagram from '@/app/_components/ArchitectureDiagram';
 import { IProject } from '@/types';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { useRef } from 'react';
 
 interface Props {
@@ -48,7 +48,6 @@ const ProjectDetails = ({ project }: Props) => {
                 filter: 'blur(3px)',
                 autoAlpha: 0,
                 scale: 0.9,
-                // position: 'sticky',
                 scrollTrigger: {
                     trigger: '#info',
                     start: 'bottom bottom',
@@ -76,7 +75,6 @@ const ProjectDetails = ({ project }: Props) => {
                             start: () => (i ? 'top bottom' : 'top 50%'),
                             end: 'bottom top',
                             scrub: true,
-                            // invalidateOnRefresh: true, // to make it responsive
                         },
                     });
                 });
@@ -87,20 +85,12 @@ const ProjectDetails = ({ project }: Props) => {
     return (
         <section className="pt-5 pb-14">
             <div className="container" ref={containerRef}>
-                <TransitionLink
-                    back
-                    href="/"
-                    className="mb-16 inline-flex gap-2 items-center group h-12"
-                >
-                    <ArrowLeft className="group-hover:-translate-x-1 group-hover:text-primary transition-all duration-300" />
-                    Back
-                </TransitionLink>
-
                 <div
                     className="top-0 min-h-[calc(100svh-100px)] flex"
                     id="info"
                 >
                     <div className="relative w-full">
+                        {/* ── Title + external links ── */}
                         <div className="flex items-start gap-6 mx-auto mb-10 max-w-[635px]">
                             <h1 className="fade-in-later opacity-0 text-4xl md:text-[60px] leading-none font-anton overflow-hidden">
                                 <span className="inline-block">
@@ -133,37 +123,49 @@ const ProjectDetails = ({ project }: Props) => {
                         </div>
 
                         <div className="max-w-[635px] space-y-7 pb-20 mx-auto">
+                            {/* ── Year ── */}
                             <div className="fade-in-later">
                                 <p className="text-muted-foreground font-anton mb-3">
                                     Year
                                 </p>
-
                                 <div className="text-lg">{project.year}</div>
                             </div>
+
+                            {/* ── Tech Stack ── */}
                             <div className="fade-in-later">
                                 <p className="text-muted-foreground font-anton mb-3">
                                     Tech & Technique
                                 </p>
-
                                 <div className="text-lg">
                                     {project.techStack.join(', ')}
                                 </div>
                             </div>
+
+                            {/* ── Description ── */}
                             <div className="fade-in-later">
                                 <p className="text-muted-foreground font-anton mb-3">
                                     Description
                                 </p>
-
                                 <div className="text-lg prose-xl markdown-text">
                                     {parse(project.description)}
                                 </div>
                             </div>
+
+                            {/* ── Architecture Diagram ── */}
+                            {project.architecture && (
+                                <div className="fade-in-later">
+                                    <ArchitectureDiagram
+                                        diagram={project.architecture}
+                                    />
+                                </div>
+                            )}
+
+                            {/* ── My Role ── */}
                             {project.role && (
                                 <div className="fade-in-later">
                                     <p className="text-muted-foreground font-anton mb-3">
                                         My Role
                                     </p>
-
                                     <div className="text-lg">
                                         {parse(project.role)}
                                     </div>
@@ -175,6 +177,7 @@ const ProjectDetails = ({ project }: Props) => {
                     </div>
                 </div>
 
+                {/* ── Project images ── */}
                 <div
                     className="fade-in-later relative flex flex-col gap-2 max-w-[800px] mx-auto"
                     id="images"

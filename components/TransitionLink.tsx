@@ -42,6 +42,17 @@ const TransitionLink = ({
                     sessionStorage.setItem('restoreScroll', 'true');
                     router.back();
                 } else if (href) {
+                    // Capture scroll position NOW — before router.push triggers
+                    // Next.js's internal scroll reset. By the time React unmounts
+                    // the old page, window.scrollY is already 0, so we can't
+                    // rely on cleanup effects to save an accurate value.
+                    if (window.location.pathname === '/') {
+                        sessionStorage.setItem(
+                            'homeScrollY',
+                            String(Math.round(window.scrollY)),
+                        );
+                        sessionStorage.setItem('restoreScroll', 'true');
+                    }
                     router.push(href.toString());
                 } else if (onClick) {
                     onClick(e);

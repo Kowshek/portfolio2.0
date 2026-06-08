@@ -3,24 +3,39 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useLenis } from 'lenis/react';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
 export default function Template({ children }: { children: React.ReactNode }) {
     const lenis = useLenis();
+    const pathname = usePathname();
 
     useEffect(() => {
         if (!lenis) return;
 
-        // Only jump to top on fresh forward navigation.
-        // If restoreScroll is set, ProjectList owns the restoration.
-        const isRestoring =
+        // Only skip scroll-to-top when ALL three conditions are true:
+        // 1. We're mounting on the home route
+        // 2. The flag was set by ProjectList when the user left home
+        // 3. There is an actual non-zero position to restore
+        //
+        // For every other route (project pages, etc.) we always scroll to top,
+        // even if restoreScroll happens to be stale in sessionStorage.
+        const isHome = pathname === '/';
+        const shouldRestore =
             sessionStorage.getItem('restoreScroll') === 'true';
-        if (!isRestoring) {
-            lenis.scrollTo(0, { immediate: true });
+        const savedY = parseFloat(
+            sessionStorage.getItem('homeScrollY') || '0',
+        );
+
+        if (isHome && shouldRestore && savedY > 0) {
+            // ProjectList's restore effect will handle the actual scroll.
+            return;
         }
-    }, [lenis]);
+
+        lenis.scrollTo(0, { immediate: true });
+    }, [lenis, pathname]);
 
     useGSAP(() => {
         const tl = gsap.timeline();
