@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React from 'react';
 import Hero3DObject from './Hero3DObject';
+import MobileSwipeCards from './MobileSwipeCards';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -70,32 +71,12 @@ const Banner = () => {
                             Open to interesting opportunities
                         </span>
                     </div>
+
+                    {/* --- Mobile Interactive Element --- */}
+                    <MobileSwipeCards />
+                    {/* ------------------------- */}
                 </div>
 
-                <div className="md:absolute bottom-[10%] right-[4%] flex md:flex-col gap-4 md:gap-8 text-center md:text-right">
-                    <div className="slide-up-and-fade">
-                        <h5 className="text-3xl sm:text-4xl font-anton text-primary mb-1.5">
-                            5+
-                        </h5>
-                        <p className="text-muted-foreground">
-                            Projects Shipped
-                        </p>
-                    </div>
-                    <div className="slide-up-and-fade">
-                        <h5 className="text-3xl sm:text-4xl font-anton text-primary mb-1.5">
-                            1
-                        </h5>
-                        <p className="text-muted-foreground">
-                            Live AI Product
-                        </p>
-                    </div>
-                    <div className="slide-up-and-fade">
-                        <h5 className="text-3xl sm:text-4xl font-anton text-primary mb-1.5">
-                            2025
-                        </h5>
-                        <p className="text-muted-foreground">Amrita CSE Grad</p>
-                    </div>
-                </div>
             </div>
         </section>
     );

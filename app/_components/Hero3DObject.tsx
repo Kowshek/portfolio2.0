@@ -71,7 +71,7 @@ const AnimatedObject = () => {
 
 export default function Hero3DObject() {
     return (
-        <div className="absolute inset-0 w-full h-full -z-0 pointer-events-none opacity-80 mix-blend-screen">
+        <div className="hidden md:block absolute inset-0 w-full h-full -z-0 pointer-events-none opacity-80 mix-blend-screen">
             <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
                 <ambientLight intensity={0.5} />
                 <AnimatedObject />
