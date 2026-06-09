@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useRef, useState } from 'react';
 import { SectionFlower } from './icons';
 import { cn } from '@/lib/utils';
 import { useGSAP } from '@gsap/react';
