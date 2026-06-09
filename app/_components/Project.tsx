@@ -114,7 +114,7 @@ const Project = ({ index, project, selectedProject, onMouseEnter }: Props) => {
                     width="600"
                     height="200"
                     className={cn(
-                        'w-full object-cover mb-6 aspect-video object-top',
+                        'hidden md:block w-full object-cover mb-6 aspect-video object-top',
                     )}
                     key={project.slug}
                     loading="lazy"

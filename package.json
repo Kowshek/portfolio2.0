@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
     "clsx": "^2.1.1",
+    "cobe": "^2.0.1",
     "gsap": "^3.12.5",
     "html-react-parser": "^5.2.3",
     "lenis": "^1.1.16",
@@ -20,13 +23,15 @@
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "three": "^0.184.0"
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/three": "^0.184.1",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",

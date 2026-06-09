@@ -108,13 +108,13 @@ const Certifications = () => {
                                     href={cert.credentialUrl}
                                     target="_blank"
                                     rel="noreferrer noopener"
-                                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
+                                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-200 mt-auto"
                                 >
                                     <ExternalLink size={13} />
                                     View Certificate
                                 </a>
                             ) : (
-                                <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground/40 select-none">
+                                <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground/40 select-none mt-auto">
                                     <ExternalLink size={13} />
                                     Certificate on file
                                 </span>

@@ -52,7 +52,7 @@ const AboutMe = () => {
     );
 
     return (
-        <section className="pb-section" id="about-me">
+        <section className="pb-section pt-[150px] md:pt-[200px]" id="about-me">
             <div className="container" ref={container}>
                 <h2 className="text-4xl md:text-6xl font-thin mb-20 slide-up-and-fade">
                     I build things that actually ship, not just demos that live in a GitHub repo with zero stars.

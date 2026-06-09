@@ -1,4 +1,5 @@
 'use client';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
@@ -11,18 +12,18 @@ const CustomCursor = () => {
     useGSAP((context, contextSafe) => {
         if (window.innerWidth < 768) return;
 
+        if (!svgRef.current) return;
+
+        const xTo = gsap.quickTo(svgRef.current, 'x', { duration: 0.25, ease: 'power2.out' });
+        const yTo = gsap.quickTo(svgRef.current, 'y', { duration: 0.25, ease: 'power2.out' });
+
         const handleMouseMove = contextSafe?.((e: MouseEvent) => {
-            if (!svgRef.current) return;
-
-            const { clientX, clientY } = e;
-
-            gsap.to(svgRef.current, {
-                x: clientX,
-                y: clientY,
-                ease: 'power2.out',
-                duration: 0.25,
-                opacity: 1,
-            });
+            xTo(e.clientX);
+            yTo(e.clientY);
+            
+            if (svgRef.current && svgRef.current.style.opacity !== '1') {
+                gsap.to(svgRef.current, { opacity: 1, duration: 0.2 });
+            }
         }) as any;
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -37,7 +38,7 @@ const CustomCursor = () => {
             width="27"
             height="30"
             viewBox="0 0 27 30"
-            className="hidden md:block fixed top-0 left-0 opacity-0 z-[50] pointer-events-none" // -translate-x-1/2 -translate-y-1/2
+            className="hidden md:block fixed top-0 left-0 opacity-0 z-[50] pointer-events-none"
             fill="none"
             id="cursor"
             strokeWidth="2"

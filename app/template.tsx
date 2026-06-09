@@ -70,6 +70,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
             })
             .to('.page-transition', {
                 yPercent: -100,
+                onComplete: () => {
+                    gsap.set('.page-transition', { display: 'none' });
+                }
             });
     });
 

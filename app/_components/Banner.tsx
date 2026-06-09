@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
 import React from 'react';
+import Hero3DObject from './Hero3DObject';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -34,6 +35,7 @@ const Banner = () => {
 
     return (
         <section className="relative overflow-hidden" id="banner">
+            <Hero3DObject />
             <ArrowAnimation />
             <div
                 className="container h-[100svh] min-h-[530px] max-md:pb-10 flex justify-between items-center max-md:flex-col"
