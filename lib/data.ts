@@ -39,6 +39,94 @@ export const MY_STACK = {
 
 export const PROJECTS: IProject[] = [
     {
+        title: 'Blue Veg Hut',
+        slug: 'blue-veg-hut',
+        liveUrl: 'https://shop.blueveghut.co.uk',
+        year: 2025,
+        description: `A full-stack e-commerce platform built for a UK-based vegetable delivery business — my first freelance client project, live and serving real customers.<br/><br/>
+      Key Features:<br/>
+      <ul>
+        <li>🛒 Full e-commerce flow: product browsing, cart, and checkout with order confirmation emails to both customer and vendor</li>
+        <li>🔐 Auth system: JWT-based session management plus Google OAuth 2.0 for one-click sign-in</li>
+        <li>📧 Transactional emails via Brevo: order confirmation (customer) and order notification (vendor) using Jinja2 HTML templates</li>
+        <li>🛠️ Admin dashboard: full product management, stock control, and live order tracking</li>
+        <li>📦 Bulk orders for business: separate flow for commercial clients</li>
+        <li>🌍 Custom domain via GoDaddy CNAME → Vercel CDN</li>
+      </ul><br/>
+      Technical Highlights:
+      <ul>
+        <li>First solo freelance delivery — handled client brief, design, engineering, and deployment end-to-end</li>
+        <li>FastAPI backend on Railway (Europe West) with PostgreSQL, Alembic migrations, and an in-process email worker</li>
+        <li>React + Vite frontend on Vercel CDN; vercel.json rewrites proxy all /api/* calls to Railway</li>
+        <li>Co-developed with Yogesh (Yogi305) — private repo on GitHub</li>
+      </ul>`,
+        role: `Freelance Full-Stack Developer<br/>
+      <ul>
+        <li>🎨 Designed and built the full product: UI, backend, database, and deployment pipeline</li>
+        <li>⚙️ Backend: FastAPI + Python (uv) with SQLModel models, JWT auth, Google OAuth 2.0, and Brevo transactional email</li>
+        <li>🖥️ Frontend: Vite + React with a custom admin dashboard for product, stock, and order management</li>
+        <li>🗄️ Database: PostgreSQL on Railway with Alembic for schema migrations</li>
+        <li>🚀 Deployed: Frontend on Vercel CDN, backend + DB on Railway (Europe West), custom domain via GoDaddy</li>
+        <li>🤝 Co-developed with Yogi305; first paying client project</li>
+      </ul>`,
+        techStack: [
+            'React',
+            'Vite',
+            'Tailwind CSS',
+            'FastAPI',
+            'Python',
+            'PostgreSQL',
+            'JWT',
+            'Google OAuth 2.0',
+            'Brevo',
+            'Railway',
+            'Vercel',
+        ],
+        thumbnail: '/projects/thumbnail/blue-veg-hut.jpg',
+        longThumbnail: '/projects/long/blue-veg-hut.jpg',
+        images: ['/projects/images/blue-veg-hut.jpg'],
+        architecture: {
+            layers: [
+                {
+                    id: 'user',
+                    label: 'User / Customer',
+                    sublabel: 'Browser · Google OAuth · order flow',
+                    icon: '👤',
+                    variant: 'default',
+                },
+                {
+                    id: 'frontend',
+                    label: 'Vite + React (Vercel CDN)',
+                    sublabel: 'Shop UI · Admin dashboard · /api/* proxy',
+                    icon: '⚛',
+                    variant: 'default',
+                },
+                {
+                    id: 'api',
+                    label: 'FastAPI Backend (Railway)',
+                    sublabel: 'REST endpoints · JWT · Google OAuth 2.0',
+                    icon: '⚡',
+                    variant: 'primary',
+                },
+                {
+                    id: 'email',
+                    label: 'Brevo Email Worker',
+                    sublabel:
+                        'Order confirmation · vendor notification · Jinja2 templates',
+                    icon: '📧',
+                    variant: 'secondary',
+                },
+                {
+                    id: 'db',
+                    label: 'PostgreSQL (Railway)',
+                    sublabel: 'Products · orders · users · Alembic migrations',
+                    icon: '🗄️',
+                    variant: 'default',
+                },
+            ],
+        },
+    },
+    {
         title: 'IngrediScan.AI',
         slug: 'ingrediscan-ai',
         liveUrl: 'https://ingrediscan.in',
@@ -408,11 +496,7 @@ export const CERTIFICATIONS: ICertification[] = [
         provider: 'Anthropic Education',
         date: 'April 2026',
         credentialUrl: 'https://verify.skilljar.com/c/9brbht3v2crm',
-        skills: [
-            'Claude API',
-            'Prompt Writing',
-            'LLM Concepts',
-        ],
+        skills: ['Claude API', 'Prompt Writing', 'LLM Concepts'],
         providerLogo: '/logo/anthropic.svg',
     },
     {
@@ -428,33 +512,29 @@ export const CERTIFICATIONS: ICertification[] = [
         provider: 'Anthropic Education',
         date: 'June 2026',
         credentialUrl: 'https://verify.skilljar.com/c/j8crswh2ri3d',
-        skills: [
-            'Agentic Coding',
-            'CLI Tools',
-            'AI Integration',
-        ],
+        skills: ['Agentic Coding', 'CLI Tools', 'AI Integration'],
         providerLogo: '/logo/anthropic.svg',
     },
 ];
 
 export const HIGHLIGHTS: IHighlight[] = [
     {
-        value: '5+',
+        value: '6+',
         label: 'Production Apps',
         description:
-            'Deployed on Vercel, Render, and Netlify, not just GitHub repos gathering dust.',
+            'Deployed on Vercel, Railway, Render, and Netlify, not just GitHub repos gathering dust.',
     },
     {
         value: '1',
-        label: 'Live AI Product',
+        label: 'Freelance Client',
         description:
-            'IngrediScan.AI, solo-built from zero to production, serving real users with real AI.',
+            'Blue Veg Hut — a full e-commerce platform built and shipped for a paying UK client.',
     },
     {
         value: 'Full-Stack',
         label: 'Range',
         description:
-            'React frontends → FastAPI backends → PostgreSQL databases. I own the whole stack.',
+            'React frontends → FastAPI backends → PostgreSQL databases.',
     },
     {
         value: '1 yr',
